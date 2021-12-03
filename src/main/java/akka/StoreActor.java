@@ -1,2 +1,6 @@
-package akka;public class StoreActor {
+package akka;
+
+public class StoreActor {
+
+    
 }
