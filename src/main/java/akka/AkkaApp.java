@@ -3,9 +3,16 @@ package akka;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
-import akka.http.javadsl.Http;
+import akka.http.javadsl.*;
+import akka.http.javadsl.model.HttpRequest;
+import akka.http.javadsl.model.HttpResponse;
 import akka.routing.RoundRobinPool;
 import akka.stream.ActorMaterializer;
+import akka.stream.javadsl.Flow;
+
+import javax.annotation.processing.Completion;
+import java.util.Optional;
+import java.util.concurrent.CompletionStage;
 
 public class AkkaApp {
     public static void main(String[] args) throws Exception {
@@ -25,7 +32,10 @@ public class AkkaApp {
 
         final Http http = Http.get(system);
 
-        http.bindAndHandle(, actorMater, );
+        Flow<HttpRequest, HttpResponse, ?> handler = new Flow();
+        ConnectHttp connect = ConnectHttp.toHost();
+
+        CompletionStage<ServerBinding> srv =  http.bindAndHandle(handler, connect, actorMater);
 
     }
 }
