@@ -13,6 +13,9 @@ public class TestData {
 
     @JsonCreator
     public TestData(
+            @JsonProperty("packageId") String packageID,
+            @JsonProperty("jsScript") String packageID,
+            @JsonProperty("functionName") String packageID,
             @JsonProperty("packageID") String packageID
     ) {
       this.packageID = packageID;
