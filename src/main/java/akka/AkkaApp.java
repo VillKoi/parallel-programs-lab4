@@ -42,9 +42,9 @@ public class AkkaApp {
 
         Flow<HttpRequest, HttpResponse, ?> handler = concat(
                 path("get_resutl", ()->
-                        get(()->
+                        get(()-> (
                                 Future<Object> res = Patterns.ask(storeActor, "message", 0);
-                                complete("Ok")))
+                                completeOKWithFuture(res, ))))
         );
         ConnectHttp connect = ConnectHttp.toHost(HOST, PORT);
 
