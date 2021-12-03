@@ -54,12 +54,18 @@ public class AkkaApp {
                                     completeOKWithFuture(res, Jackson.marshaller());
                                 })))
                 )),
-                get(() -> path("run", ()->
+                get(() -> concat(
+                        path("get_result", ()->
                                 get(()-> parameter("packageID", key -> {
                                     Future<Object> res = Patterns.ask(storeActor, "message", 0);
                                     completeOKWithFuture(res, Jackson.marshaller());
-                                })
-                )));
+                                }))),
+                        path("run", ()->
+                                get(()-> parameter("packageID", key -> {
+                                    Future<Object> res = Patterns.ask(storeActor, "message", 0);
+                                    completeOKWithFuture(res, Jackson.marshaller());
+                                })))
+                ));
         );
 
 
