@@ -4,6 +4,7 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.routing.RoundRobinPool;
+import akka.stream.ActorMaterializer;
 
 public class AkkaApp {
     public static void main(String[] args) throws Exception {
@@ -18,6 +19,8 @@ public class AkkaApp {
         storeActor.tell(new StoreActor.StoreMessage("test", "test"), ActorRef.noSender());
 
         ActorRef testActor = system.actorOf(new RoundRobinPool(3).props(Props.create(TestRunnerActor.class)));
+
+        ActorMaterializer.create(system);
 
     }
 }
