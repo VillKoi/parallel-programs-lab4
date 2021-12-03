@@ -8,16 +8,13 @@ import akka.http.javadsl.marshallers.jackson.Jackson;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.http.javadsl.model.StatusCodes;
-import akka.http.javadsl.server.PathMatcher0;
 import akka.http.javadsl.server.Route;
 import akka.pattern.Patterns;
 import akka.routing.RoundRobinPool;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 
-import javax.annotation.processing.Completion;
 import java.util.ArrayList;
-import java.util.Optional;
 import java.util.concurrent.CompletionStage;
 import scala.concurrent.Future;
 
@@ -39,7 +36,7 @@ public class AkkaApp {
                 post(() -> concat(
                         path("run", ()->
                                 entity(
-                                        Jackson.unmarshaller(TestData.class), body ->  {
+                                        Jackson.unmarshaller(TestInputData.class), body ->  {
                                             ArrayList<Object> tests =  body.GetTests();
                                             for (Object t: tests) {
                                                 testActor.tell(t, storeActor);
