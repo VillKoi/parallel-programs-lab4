@@ -44,11 +44,10 @@ public class AkkaApp {
                 path("get_result", ()->
                         get(()-> parameter("packageID", key -> {
                                     Future<Object> res = Patterns.ask(storeActor, "message", 0);
-                                    completeOKWithFuture(res, )));
+                                    completeOKWithFuture(res, "")));
                                 };
+        ));
 
-        )
-        );
         ConnectHttp connect = ConnectHttp.toHost(HOST, PORT);
 
         CompletionStage<ServerBinding> srv =  http.bindAndHandle(handler, connect, actorMater);
