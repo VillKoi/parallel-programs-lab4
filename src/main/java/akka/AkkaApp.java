@@ -44,7 +44,7 @@ public class AkkaApp {
 
         final Http http = Http.get(system);
 
-        Flow<HttpRequest, HttpResponse, ?> handler = route(
+        Route router = route(
                 get(() -> concat(
                         path("get_result", () -> parameter("packageID", key -> {
                                     Future<Object> res = Patterns.ask(storeActor, "message", 0);
@@ -56,6 +56,8 @@ public class AkkaApp {
                                     return completeOKWithFuture(res, Jackson.marshaller());
                                 })))
                 )));
+
+        Flow<HttpRequest, HttpResponse, ?> handler;
 
         ConnectHttp connect = ConnectHttp.toHost(HOST, PORT);
 
