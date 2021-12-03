@@ -11,7 +11,7 @@ public class TestRunnerActor {
     @Override
     public AbstractActor.Receive createReceive(){
         return receiveBuilder().match(
-                Object, test -> {
+                TestData.class, test -> {
                     String result = RunTest(test.GetJscript(), test.GetFunctionName, test.GetParams());
                     sender().tell("String");
                 }
