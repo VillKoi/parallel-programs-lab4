@@ -4,6 +4,7 @@ import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
 import akka.http.javadsl.*;
+import akka.http.javadsl.marshallers.jackson.Jackson;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
 import akka.pattern.Patterns;
@@ -44,7 +45,7 @@ public class AkkaApp {
                 path("get_result", ()->
                         get(()-> parameter("packageID", key -> {
                                     Future<Object> res = Patterns.ask(storeActor, "message", 0);
-                                    completeOKWithFuture(res, "")));
+                                    completeOKWithFuture(res, Jackson.marshaller());
                                 };
         ));
 
