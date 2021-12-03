@@ -18,7 +18,7 @@ public class AkkaApp {
 
         storeActor.tell(new StoreActor.StoreMessage("test", "test"), ActorRef.noSender());
 
-       new RoundRobinPool(3)
+       router =  new RoundRobinPool(3);
 
     }
 }
