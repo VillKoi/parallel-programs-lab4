@@ -13,7 +13,7 @@ public class AkkaApp {
 
 
         ActorSystem system = ActorSystem.create("test");
-        ActorRef storeActor = system.actorOf(Props.create(StoreActor.class) );
+        ActorRef storeActor = system.actorOf(Props.create(RouteActor.class) );
         storeActor.tell(new StoreActor.StoreMessage("test", "test"), ActorRef.noSender());
     }
 }
