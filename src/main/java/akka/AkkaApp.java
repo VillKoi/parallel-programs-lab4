@@ -14,7 +14,7 @@ import akka.stream.javadsl.Flow;
 import javax.annotation.processing.Completion;
 import java.util.Optional;
 import java.util.concurrent.CompletionStage;
-import java.util.concurrent.Future;
+import scala.concurrent.Future;
 
 public class AkkaApp {
     private final static String HOST = "";
