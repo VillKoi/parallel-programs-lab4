@@ -25,32 +25,8 @@ import static akka.http.javadsl.server.Directives.*;
 import static akka.http.javadsl.server.PathMatchers.segment;
 
 public class AkkaApp {
-    private final static String HOST = "";
+    private final static String HOST = "localhost";
     private final static int PORT = 8080;
-
-    public static void main(String[] args) throws Exception {
-        if (args.length != 3) {
-            System.err.println("Usage: FlightApp <1: input path FlightMapper> <2: input path AirportMapper> <output path>");
-            System.exit(-1);
-        }
-
-        ActorSystem system = ActorSystem.create("test");
-        ActorRef storeActor = system.actorOf(Props.create(RouteActor.class));
-
-        storeActor.tell(new StoreActor.StoreMessage("test", "test"), ActorRef.noSender());
-
-        ActorRef testActor = system.actorOf(new RoundRobinPool(3).props(Props.create(TestRunnerActor.class)));
-
-        ActorMaterializer actorMater =  ActorMaterializer.create(system);
-
-        final Http http = Http.get(system);
-
-        Route router = createRouter(storeActor, testActor);
-
-        Flow<HttpRequest, HttpResponse, ?> handler = router.flow(system, actorMater);
-        ConnectHttp connect = ConnectHttp.toHost(HOST, PORT);
-        CompletionStage<ServerBinding> srv =  http.bindAndHandle(handler, connect, actorMater);
-    }
 
     private static Route createRouter(ActorRef storeActor,  ActorRef testActor ) {
         return route(
@@ -64,12 +40,29 @@ public class AkkaApp {
                         path("run", ()->
                                 entity(
                                         Jackson.unmarshaller(TestData.class), body ->  {
-                                 ArrayList<Object> tests =  body.GetTests();
-                                    for (Object t: tests) {
-                                        testActor.tell(t, storeActor);
-                                    }
-                                    return complete(StatusCodes.OK);
-                                })))
+                                            ArrayList<Object> tests =  body.GetTests();
+                                            for (Object t: tests) {
+                                                testActor.tell(t, storeActor);
+                                            }
+                                            return complete(StatusCodes.OK);
+                                        })))
                 ));
     };
+
+    public static void main(String[] args) throws Exception {
+        ActorSystem system = ActorSystem.create("test");
+        ActorRef storeActor = system.actorOf(Props.create(RouteActor.class));
+
+        ActorRef testActor = system.actorOf(new RoundRobinPool(3).props(Props.create(TestRunnerActor.class)));
+
+        ActorMaterializer actorMater =  ActorMaterializer.create(system);
+
+        final Http http = Http.get(system);
+
+        Route router = createRouter(storeActor, testActor);
+
+        Flow<HttpRequest, HttpResponse, ?> handler = router.flow(system, actorMater);
+        ConnectHttp connect = ConnectHttp.toHost(HOST, PORT);
+        CompletionStage<ServerBinding> srv =  http.bindAndHandle(handler, connect, actorMater);
+    }
 }
