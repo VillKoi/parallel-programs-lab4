@@ -44,14 +44,14 @@ public class AkkaApp {
 
         final Http http = Http.get(system);
 
-        Route router =
+        Route router = createRouter(storeActor, testActor);
 
         Flow<HttpRequest, HttpResponse, ?> handler = router.flow(system, actorMater);
         ConnectHttp connect = ConnectHttp.toHost(HOST, PORT);
         CompletionStage<ServerBinding> srv =  http.bindAndHandle(handler, connect, actorMater);
     }
 
-    private Route createRouter(ActorRef storeActor,  ActorRef testActor ) {
+    private static Route createRouter(ActorRef storeActor,  ActorRef testActor ) {
         return route(
                 get(() -> concat(
                         path("get_result", () -> parameter("packageID", key -> {
