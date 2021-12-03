@@ -5,8 +5,16 @@ import akka.actor.AbstractActor;
 public class StoreActor extends AbstractActor {
     @Override
     public Receive createReceive(){
-        return receiveBuilder().match(
-                
+        return receiveBuilder(
+        ).match(
+                TestInformation.class, tI -> {
+
+                }
+
+
+
+        ).match(
+
         ).build();
     }
 

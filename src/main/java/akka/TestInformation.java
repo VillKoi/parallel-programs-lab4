@@ -12,7 +12,7 @@ public class TestInformation {
     private Object params;
 
     @JsonCreator
-    public TestInputData(
+    public TestInformation(
             @JsonProperty("packageId") String packageID,
             @JsonProperty("jsScript") String jscript,
             @JsonProperty("functionName") String functionName,
