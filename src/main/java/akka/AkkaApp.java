@@ -7,6 +7,7 @@ import akka.http.javadsl.*;
 import akka.http.javadsl.marshallers.jackson.Jackson;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
+import akka.http.javadsl.model.StatusCodes;
 import akka.pattern.Patterns;
 import akka.routing.RoundRobinPool;
 import akka.stream.ActorMaterializer;
@@ -61,6 +62,7 @@ public class AkkaApp {
         Flow<HttpRequest, HttpResponse, ?> handler_2 = route(
                 get(() -> concat(
                             path(segment("s").slash(), () -> complete("pl"));
+                            path(segment("foo/bar"), () -> complete(StatusCodes.OK));
                     )),
                 get(() -> complete("ok"))
         );
