@@ -61,8 +61,8 @@ public class AkkaApp {
                         }))),
                 post(() -> concat(
                         path("run", ()->
-                                entity(Jackson.unmarshaller(""), body ->  {
-                                 ArrayList<Object> tests =  body.GetTest()
+                                entity(Jackson.unmarshaller(TestData.class), body ->  {
+                                 ArrayList<Object> tests =  body.GetTests();
                                     for (Object t: tests) {
                                         testActor.tell(t, storeActor);
                                     }
