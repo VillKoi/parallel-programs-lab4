@@ -14,6 +14,7 @@ import akka.stream.javadsl.Flow;
 import javax.annotation.processing.Completion;
 import java.util.Optional;
 import java.util.concurrent.CompletionStage;
+import java.util.concurrent.Future;
 
 public class AkkaApp {
     private final static String HOST = "";
@@ -41,7 +42,7 @@ public class AkkaApp {
 
         CompletionStage<ServerBinding> srv =  http.bindAndHandle(handler, connect, actorMater);
 
-        Patterns.ask(storeActor, "message", 0);
+        Future<Object> res = Patterns.ask(storeActor, "message", 0);
 
     }
 }
