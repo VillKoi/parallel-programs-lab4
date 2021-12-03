@@ -14,11 +14,10 @@ public class AkkaApp {
 
         ActorSystem system = ActorSystem.create("test");
         ActorRef storeActor = system.actorOf(Props.create(RouteActor.class));
-        ActorRef testActor = system.actorOf(Props.create(TestRunnerActor.class));
 
         storeActor.tell(new StoreActor.StoreMessage("test", "test"), ActorRef.noSender());
 
-       router =  new RoundRobinPool(3).props();
+        ActorRef testActor = system.actorOf(new RoundRobinPool(3).props(Props.create(TestRunnerActor.class)));
 
     }
 }
