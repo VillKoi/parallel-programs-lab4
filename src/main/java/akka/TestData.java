@@ -8,14 +8,15 @@ import java.util.ArrayList;
 public class TestData {
     private String packageID;
 
-    public ArrayList<Object> GetTests() {
-        return new ArrayList<>();
-    }
-
     @JsonCreator
     public TestData(
             @JsonProperty("packageID") String packageID
     ) {
       this.packageID = packageID;
     }
+
+    public ArrayList<Object> GetTests() {
+        return new ArrayList<>();
+    }
+
 }

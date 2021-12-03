@@ -58,10 +58,12 @@ public class AkkaApp {
                         path("get_result", () -> parameter("packageID", key -> {
                             Future<Object> res = Patterns.ask(storeActor, "message", 0);
                             return completeOKWithFuture(res, Jackson.marshaller());
-                        }))),
+                        }))
+                )),
                 post(() -> concat(
                         path("run", ()->
-                                entity(Jackson.unmarshaller(TestData.class), body ->  {
+                                entity(
+                                        Jackson.unmarshaller(TestData.class), body ->  {
                                  ArrayList<Object> tests =  body.GetTests();
                                     for (Object t: tests) {
                                         testActor.tell(t, storeActor);
