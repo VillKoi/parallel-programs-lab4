@@ -19,6 +19,7 @@ import scala.concurrent.Future;
 
 import static akka.actor.Nobody.path;
 import static akka.http.javadsl.server.Directives.*;
+import static akka.http.javadsl.server.PathMatchers.segment;
 
 public class AkkaApp {
     private final static String HOST = "";
@@ -60,7 +61,7 @@ public class AkkaApp {
         Flow<HttpRequest, HttpResponse, ?> handler_2 = route(
 
                     get(() -> concat(
-                            path("s", () ->
+                            path(segment("s").slash(), () ->
                                 complete("pl"))
                     )
                             ),
