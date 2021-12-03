@@ -37,7 +37,7 @@ public class AkkaApp {
 
         final Http http = Http.get(system);
 
-        Flow<HttpRequest, HttpResponse, ?> handler = new Flow();
+        Flow<HttpRequest, HttpResponse, ?> handler = ;
         ConnectHttp connect = ConnectHttp.toHost(HOST, PORT);
 
         CompletionStage<ServerBinding> srv =  http.bindAndHandle(handler, connect, actorMater);
