@@ -17,6 +17,7 @@ import java.util.concurrent.CompletionStage;
 import scala.concurrent.Future;
 
 import static akka.actor.Nobody.path;
+import static akka.http.javadsl.server.Directives.*;
 
 public class AkkaApp {
     private final static String HOST = "";
@@ -43,7 +44,7 @@ public class AkkaApp {
                 path("get_resutl", ()->
                         get(()->
                                 Future<Object> res = Patterns.ask(storeActor, "message", 0);
-                                complete))
+                                complete("Ok")))
         );
         ConnectHttp connect = ConnectHttp.toHost(HOST, PORT);
 
