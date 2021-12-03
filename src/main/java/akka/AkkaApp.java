@@ -60,7 +60,9 @@ public class AkkaApp {
                         })),
                         path("run", ()->
                                 get(()-> parameter("packageID", key -> {
-                                    testActor
+
+                                    Object test;
+                                    testActor.tell(Object test, storeActor);
                                     return complete(StatusCodes.OK);
                                 })))
                 )));
