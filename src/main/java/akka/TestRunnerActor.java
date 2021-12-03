@@ -12,8 +12,8 @@ public class TestRunnerActor extends AbstractActor {
     public Receive createReceive(){
         return receiveBuilder().match(
                 TestData.class, test -> {
-                    String result = RunTest(test.GetJscript(), test.GetFunctionName, test.GetParams());
-                    sender().tell("String");
+                    String result = RunTest(test.getJscript(), test.getFunctionName(), test.getParams());
+                    sender().tell(result);
                 }
         ).build();
     }

@@ -16,11 +16,12 @@ public class TestData {
             @JsonProperty("packageId") String packageID,
             @JsonProperty("jsScript") String jscript,
             @JsonProperty("functionName") String functionName,
-            @JsonProperty("tests") String packageID
+            @JsonProperty("tests") Object params
     ) {
       this.packageID = packageID;
       this.jscript = jscript;
       this.functionName = functionName;
+      this.params = params;
     }
 
     public ArrayList<Object> GetTests() {
