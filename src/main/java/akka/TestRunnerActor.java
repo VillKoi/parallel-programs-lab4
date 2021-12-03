@@ -12,8 +12,8 @@ public class TestRunnerActor {
     public AbstractActor.Receive createReceive(){
         return receiveBuilder().match(
                 Object, test -> {
-                    String result = RunTest();
-                    sender().tell
+                    String result = RunTest(test.GetJscript(), test.GetFunctionName, test.GetParams());
+                    sender().tell("String");
                 }
         ).build();
     }
