@@ -44,26 +44,25 @@ public class AkkaApp {
 
         final Http http = Http.get(system);
 
-        Route router = route(
+        Route router =
+
+        Flow<HttpRequest, HttpResponse, ?> handler = router.flow(system, actorMater);
+        ConnectHttp connect = ConnectHttp.toHost(HOST, PORT);
+        CompletionStage<ServerBinding> srv =  http.bindAndHandle(handler, connect, actorMater);
+    }
+
+    private Route createRouter() {
+        return route(
                 get(() -> concat(
                         path("get_result", () -> parameter("packageID", key -> {
-                                    Future<Object> res = Patterns.ask(storeActor, "message", 0);
-                                    return completeOKWithFuture(res, Jackson.marshaller());
-                                })),
+                            Future<Object> res = Patterns.ask(storeActor, "message", 0);
+                            return completeOKWithFuture(res, Jackson.marshaller());
+                        })),
                         path("run", ()->
                                 get(()-> parameter("packageID", key -> {
                                     Future<Object> res = Patterns.ask(storeActor, "message", 0);
                                     return completeOKWithFuture(res, Jackson.marshaller());
                                 })))
                 )));
-
-        Flow<HttpRequest, HttpResponse, ?> handler = router.flow(system, actorMater);
-
-        ConnectHttp connect = ConnectHttp.toHost(HOST, PORT);
-
-        CompletionStage<ServerBinding> srv =  http.bindAndHandle(handler, connect, actorMater);
-
-
-
-    }
+    };
 }
