@@ -51,7 +51,7 @@ public class AkkaApp {
 
     public static void main(String[] args) throws Exception {
         ActorSystem system = ActorSystem.create("test");
-        ActorRef storeActor = system.actorOf(Props.create(RouteActor.class));
+        ActorRef storeActor = system.actorOf(Props.create(StoreActor.class));
 
         ActorRef testActor = system.actorOf(new RoundRobinPool(3).props(Props.create(TestRunnerActor.class)));
 
