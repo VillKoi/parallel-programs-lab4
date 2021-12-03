@@ -20,7 +20,6 @@ import java.util.Optional;
 import java.util.concurrent.CompletionStage;
 import scala.concurrent.Future;
 
-import static akka.actor.Nobody.path;
 import static akka.http.javadsl.server.Directives.*;
 import static akka.http.javadsl.server.PathMatchers.segment;
 
@@ -47,8 +46,6 @@ public class AkkaApp {
 
         Flow<HttpRequest, HttpResponse, ?> handler = route(
                 get(() -> concat(
-                        pathSingleSlash(() ->
-                              complete("OK")),
                         path("get_result", () -> parameter("packageID", key -> {
                                     Future<Object> res = Patterns.ask(storeActor, "message", 0);
                                     return completeOKWithFuture(res, Jackson.marshaller());
@@ -58,17 +55,7 @@ public class AkkaApp {
                                     Future<Object> res = Patterns.ask(storeActor, "message", 0);
                                     return completeOKWithFuture(res, Jackson.marshaller());
                                 })))
-                ));
-        );
-
-            Route route =
-                get(() -> path(segment("s").slash(), () ->
-                                    complete("pl")
-                            )
-                    );
-
-
-
+                )));
 
         ConnectHttp connect = ConnectHttp.toHost(HOST, PORT);
 
