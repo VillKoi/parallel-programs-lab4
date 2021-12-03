@@ -42,18 +42,12 @@ public class AkkaApp {
         final Http http = Http.get(system);
 
         Flow<HttpRequest, HttpResponse, ?> handler = route(
-                get(() -> concat(
+                get(() ->
                         path("get_result", ()->
                                 get(()-> parameter("packageID", key -> {
                                     Future<Object> res = Patterns.ask(storeActor, "message", 0);
                                     completeOKWithFuture(res, Jackson.marshaller());
                                 }))),
-                        path("run", ()->
-                                get(()-> parameter("packageID", key -> {
-                                    Future<Object> res = Patterns.ask(storeActor, "message", 0);
-                                    completeOKWithFuture(res, Jackson.marshaller());
-                                })))
-                )),
                 get(() -> concat(
                         path("get_result", ()->
                                 get(()-> parameter("packageID", key -> {
