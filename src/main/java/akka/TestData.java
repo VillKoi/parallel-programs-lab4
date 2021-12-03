@@ -18,5 +18,4 @@ public class TestData {
     public ArrayList<Object> GetTests() {
         return new ArrayList<>();
     }
-
 }
