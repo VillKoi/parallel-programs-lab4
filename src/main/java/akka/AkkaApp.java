@@ -15,6 +15,8 @@ import java.util.Optional;
 import java.util.concurrent.CompletionStage;
 
 public class AkkaApp {
+    private static String HOST = "";
+
     public static void main(String[] args) throws Exception {
         if (args.length != 3) {
             System.err.println("Usage: FlightApp <1: input path FlightMapper> <2: input path AirportMapper> <output path>");
@@ -33,7 +35,7 @@ public class AkkaApp {
         final Http http = Http.get(system);
 
         Flow<HttpRequest, HttpResponse, ?> handler = new Flow();
-        ConnectHttp connect = ConnectHttp.toHost();
+        ConnectHttp connect = ConnectHttp.toHost(HOST);
 
         CompletionStage<ServerBinding> srv =  http.bindAndHandle(handler, connect, actorMater);
 
