@@ -51,7 +51,7 @@ public class AkkaApp {
         CompletionStage<ServerBinding> srv =  http.bindAndHandle(handler, connect, actorMater);
     }
 
-    private Route createRouter() {
+    private Route createRouter(ActorRef storeActor,  ActorRef testActor ) {
         return route(
                 get(() -> concat(
                         path("get_result", () -> parameter("packageID", key -> {
