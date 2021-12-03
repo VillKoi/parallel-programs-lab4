@@ -12,7 +12,7 @@ public class TestRunnerActor {
     public AbstractActor.Receive createReceive(){
         return receiveBuilder().match(
                 Object, test -> {
-                    RunTest();
+                    String result = RunTest();
                     sender().tell
                 }
         ).build();
