@@ -9,8 +9,8 @@ import javax.script.ScriptException;
 
 public class TestRunnerActor {
     @Override
-    public Receive createReceive(){
-        return receiveBuilder().matrh
+    public AbstractActor.Receive createReceive(){
+        return receiveBuilder().match()
     }
 
 
