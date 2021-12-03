@@ -3,6 +3,7 @@ package akka;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
+import akka.http.javadsl.Http;
 import akka.routing.RoundRobinPool;
 import akka.stream.ActorMaterializer;
 
@@ -21,6 +22,10 @@ public class AkkaApp {
         ActorRef testActor = system.actorOf(new RoundRobinPool(3).props(Props.create(TestRunnerActor.class)));
 
         ActorMaterializer actorMater =  ActorMaterializer.create(system);
+
+        final Http http = Http.get(system);
+
+        http.bindAndHandle(, actorMater, );
 
     }
 }
