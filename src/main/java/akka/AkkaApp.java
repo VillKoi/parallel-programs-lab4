@@ -3,6 +3,7 @@ package akka;
 import akka.actor.ActorRef;
 import akka.actor.ActorSystem;
 import akka.actor.Props;
+import akka.routing.RoundRobinPool;
 
 public class AkkaApp {
     public static void main(String[] args) throws Exception {
@@ -17,7 +18,7 @@ public class AkkaApp {
 
         storeActor.tell(new StoreActor.StoreMessage("test", "test"), ActorRef.noSender());
 
-        
+       new RoundRobinPool(3)
 
     }
 }
