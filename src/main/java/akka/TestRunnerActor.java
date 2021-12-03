@@ -10,7 +10,12 @@ import javax.script.ScriptException;
 public class TestRunnerActor {
     @Override
     public AbstractActor.Receive createReceive(){
-        return receiveBuilder().match().build();
+        return receiveBuilder().match(
+                Object, test -> {
+                    RunTest();
+                    sender().tell
+                }
+        ).build();
     }
 
 
