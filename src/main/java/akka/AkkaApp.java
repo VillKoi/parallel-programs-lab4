@@ -60,8 +60,8 @@ public class AkkaApp {
                         })),
                         path("run", ()->
                                 get(()-> parameter("packageID", key -> {
-                                    Future<Object> res = Patterns.ask(storeActor, "message", 0);
-                                    return completeOKWithFuture(res, Jackson.marshaller());
+                                    testActor
+                                    return complete(StatusCodes.OK);
                                 })))
                 )));
     };
