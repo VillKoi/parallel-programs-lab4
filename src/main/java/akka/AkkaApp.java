@@ -20,7 +20,7 @@ public class AkkaApp {
 
         ActorRef testActor = system.actorOf(new RoundRobinPool(3).props(Props.create(TestRunnerActor.class)));
 
-        ActorMaterializer.create(system);
+        ActorMaterializer actorMater =  ActorMaterializer.create(system);
 
     }
 }
