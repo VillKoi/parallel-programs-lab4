@@ -5,7 +5,7 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 
 public class TestExecuterActor {
-    public void RunTest(String functionName, ) {
+    public void RunTest(String functionName, String params) {
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
         engine.eval(jscript);
         Invocable invocable = (Invocable) engine;
