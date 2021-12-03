@@ -60,8 +60,8 @@ public class AkkaApp {
                         }))),
                 post(() -> concat(
                         path("run", ()->
-                                get(()->  {
-
+                                entity(Jackson.unmarshaller(""), body ->  {
+                                    
                                     Object test;
                                     testActor.tell(test, storeActor);
                                     return complete(StatusCodes.OK);
