@@ -10,15 +10,14 @@ public class StoreActor extends AbstractActor {
                 TestInformation.class, tI -> {
 
                 }
-
-
-
         ).match(
-
+                String.class, packageID -> {
+                    sender().tell(packageID, self());
+                }
         ).build();
     }
 
-    public void SetTestResult(String testResult, String packageID) {
+    private void SetTestResult(TestInformation testResult) {
       // сохраняем в локальное хранилище
     };
 
