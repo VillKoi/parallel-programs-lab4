@@ -7,6 +7,9 @@ import java.util.ArrayList;
 
 public class TestData {
     private String packageID;
+    private String jscript;
+    private String functionName;
+    private Object params;
 
     @JsonCreator
     public TestData(
@@ -17,5 +20,9 @@ public class TestData {
 
     public ArrayList<Object> GetTests() {
         return new ArrayList<>();
+    }
+
+    public String GetPackageID() {
+        return this.packageID;
     }
 }
