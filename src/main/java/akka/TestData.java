@@ -14,11 +14,13 @@ public class TestData {
     @JsonCreator
     public TestData(
             @JsonProperty("packageId") String packageID,
-            @JsonProperty("jsScript") String packageID,
-            @JsonProperty("functionName") String packageID,
-            @JsonProperty("packageID") String packageID
+            @JsonProperty("jsScript") String jscript,
+            @JsonProperty("functionName") String functionName,
+            @JsonProperty("tests") String packageID
     ) {
       this.packageID = packageID;
+      this.jscript = jscript;
+      this.functionName = functionName;
     }
 
     public ArrayList<Object> GetTests() {
