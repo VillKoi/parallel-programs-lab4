@@ -13,7 +13,8 @@ public class AkkaApp {
 
         ActorSystem system = ActorSystem.create("test");
         ActorRef storeActor = system.actorOf(Props.create(RouteActor.class));
-        ActorRef testActor = system.actorOf(Props.create(TestExecuterActor.class));
+        ActorRef testActor = system.actorOf(Props.create(TestRunnerActor.class));
+
         storeActor.tell(new StoreActor.StoreMessage("test", "test"), ActorRef.noSender());
 
         
