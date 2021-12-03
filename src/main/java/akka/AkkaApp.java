@@ -46,7 +46,13 @@ public class AkkaApp {
                         get(()-> parameter("packageID", key -> {
                                     Future<Object> res = Patterns.ask(storeActor, "message", 0);
                                     completeOKWithFuture(res, Jackson.marshaller());
-                                })));
+                                }))),
+                path(("get_result", ()->
+                        get(()-> parameter("packageID", key -> {
+                            Future<Object> res = Patterns.ask(storeActor, "message", 0);
+                            completeOKWithFuture(res, Jackson.marshaller());
+                        })))
+                );
 
         ConnectHttp connect = ConnectHttp.toHost(HOST, PORT);
 
