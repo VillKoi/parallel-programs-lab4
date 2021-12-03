@@ -15,7 +15,8 @@ import java.util.Optional;
 import java.util.concurrent.CompletionStage;
 
 public class AkkaApp {
-    private static String HOST = "";
+    private final static String HOST = "";
+    private final static int PORT = 8080;
 
     public static void main(String[] args) throws Exception {
         if (args.length != 3) {
@@ -35,7 +36,7 @@ public class AkkaApp {
         final Http http = Http.get(system);
 
         Flow<HttpRequest, HttpResponse, ?> handler = new Flow();
-        ConnectHttp connect = ConnectHttp.toHost(HOST);
+        ConnectHttp connect = ConnectHttp.toHost(HOST, PORT);
 
         CompletionStage<ServerBinding> srv =  http.bindAndHandle(handler, connect, actorMater);
 
