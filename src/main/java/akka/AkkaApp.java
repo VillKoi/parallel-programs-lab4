@@ -16,6 +16,8 @@ import java.util.Optional;
 import java.util.concurrent.CompletionStage;
 import scala.concurrent.Future;
 
+import static akka.actor.Nobody.path;
+
 public class AkkaApp {
     private final static String HOST = "";
     private final static int PORT = 8080;
@@ -37,12 +39,17 @@ public class AkkaApp {
 
         final Http http = Http.get(system);
 
-        Flow<HttpRequest, HttpResponse, ?> handler = ;
+        Flow<HttpRequest, HttpResponse, ?> handler = concat(
+                path("get_resutl", ()->
+                        get(()->
+                                Future<Object> res = Patterns.ask(storeActor, "message", 0);
+                                complete))
+        );
         ConnectHttp connect = ConnectHttp.toHost(HOST, PORT);
 
         CompletionStage<ServerBinding> srv =  http.bindAndHandle(handler, connect, actorMater);
 
-        Future<Object> res = Patterns.ask(storeActor, "message", 0);
+
 
     }
 }
