@@ -61,7 +61,7 @@ public class AkkaApp {
                 ));
         );
 
-        Flow<HttpRequest, HttpResponse, ?> handler_2 =
+            Route route =
                 get(() -> path(segment("s").slash(), () ->
                                     complete("pl")
                             )
