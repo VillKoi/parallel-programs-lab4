@@ -3,9 +3,10 @@ package akka;
 import javax.script.Invocable;
 import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 
 public class TestExecuterActor {
-    public void RunTest(String functionName, String params) {
+    public String RunTest(String jscript, String functionName, String params) throws ScriptException, NoSuchMethodException {
         ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
         engine.eval(jscript);
         Invocable invocable = (Invocable) engine;
