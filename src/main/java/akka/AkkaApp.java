@@ -57,7 +57,7 @@ public class AkkaApp {
                                 })))
                 )));
 
-        Flow<HttpRequest, HttpResponse, ?> handler;
+        Flow<HttpRequest, HttpResponse, ?> handler = router.flow(system, actorMater);
 
         ConnectHttp connect = ConnectHttp.toHost(HOST, PORT);
 
