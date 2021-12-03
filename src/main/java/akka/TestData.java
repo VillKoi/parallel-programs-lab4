@@ -22,7 +22,19 @@ public class TestData {
         return new ArrayList<>();
     }
 
-    public String GetPackageID() {
+    public String getPackageID() {
         return this.packageID;
+    }
+
+    public String getJscript() {
+        return jscript;
+    }
+
+    public String getFunctionName() {
+        return functionName;
+    }
+
+    public Object getParams() {
+        return params;
     }
 }
