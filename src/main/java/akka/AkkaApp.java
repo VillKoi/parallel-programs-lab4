@@ -58,6 +58,11 @@ public class AkkaApp {
                 ));
         );
 
+        Flow<HttpRequest, HttpResponse, ?> handler = route(
+              get(() -> complete("pl")),
+                get(() -> complete("ok"))
+        );
+
 
 
 
