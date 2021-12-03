@@ -6,6 +6,7 @@ import akka.actor.Props;
 import akka.http.javadsl.*;
 import akka.http.javadsl.model.HttpRequest;
 import akka.http.javadsl.model.HttpResponse;
+import akka.pattern.Patterns;
 import akka.routing.RoundRobinPool;
 import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
@@ -39,6 +40,8 @@ public class AkkaApp {
         ConnectHttp connect = ConnectHttp.toHost(HOST, PORT);
 
         CompletionStage<ServerBinding> srv =  http.bindAndHandle(handler, connect, actorMater);
+
+        Patterns.ask(storeActor, "message", 0);
 
     }
 }
