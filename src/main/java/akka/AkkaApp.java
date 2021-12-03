@@ -59,10 +59,6 @@ public class AkkaApp {
                             return completeOKWithFuture(res, Jackson.marshaller());
                         }))),
                 post(() -> concat(
-                        path("get_result", () -> parameter("packageID", key -> {
-                            Future<Object> res = Patterns.ask(storeActor, "message", 0);
-                            return completeOKWithFuture(res, Jackson.marshaller());
-                        })),
                         path("run", ()->
                                 get(()->  {
 
