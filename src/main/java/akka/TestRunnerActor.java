@@ -7,9 +7,9 @@ import javax.script.ScriptEngine;
 import javax.script.ScriptEngineManager;
 import javax.script.ScriptException;
 
-public class TestRunnerActor {
+public class TestRunnerActor extends AbstractActor {
     @Override
-    public AbstractActor.Receive createReceive(){
+    public Receive createReceive(){
         return receiveBuilder().match(
                 TestData.class, test -> {
                     String result = RunTest(test.GetJscript(), test.GetFunctionName, test.GetParams());
