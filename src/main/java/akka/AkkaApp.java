@@ -59,13 +59,9 @@ public class AkkaApp {
         );
 
         Flow<HttpRequest, HttpResponse, ?> handler_2 = route(
-
-                    get(() -> concat(
-                            path(segment("s").slash(), () ->
-                                complete("pl"))
-                    )
-                            ),
-
+                get(() -> concat(
+                            path(segment("s").slash(), () -> complete("pl"));
+                    )),
                 get(() -> complete("ok"))
         );
 
