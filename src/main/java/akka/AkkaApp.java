@@ -16,6 +16,7 @@ import akka.stream.ActorMaterializer;
 import akka.stream.javadsl.Flow;
 
 import javax.annotation.processing.Completion;
+import java.util.ArrayList;
 import java.util.Optional;
 import java.util.concurrent.CompletionStage;
 import scala.concurrent.Future;
@@ -61,9 +62,10 @@ public class AkkaApp {
                 post(() -> concat(
                         path("run", ()->
                                 entity(Jackson.unmarshaller(""), body ->  {
-                                    
-                                    Object test;
-                                    testActor.tell(test, storeActor);
+                                 ArrayList<Object> tests =  body.GetTest()
+                                    for (Object t: tests) {
+                                        testActor.tell(t, storeActor);
+                                    }
                                     return complete(StatusCodes.OK);
                                 })))
                 ));
