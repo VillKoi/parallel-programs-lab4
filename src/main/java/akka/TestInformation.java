@@ -14,6 +14,8 @@ public class TestInformation {
     private String expectedResult;
     private ArrayList<Integer> args;
 
+    private String result;
+
     @JsonCreator
     public TestInformation(
             @JsonProperty("testName") String testName,
@@ -38,6 +40,10 @@ public class TestInformation {
         this.testName = result.testName;
         this.expectedResult = result.expectedResult;
         this.args = result.args;
+    }
+
+    public TestInformation setResult(String result) {
+        this.result = result;
     }
 
     public ArrayList<Object> GetTests() {

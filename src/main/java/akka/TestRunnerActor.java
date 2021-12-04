@@ -14,7 +14,7 @@ public class TestRunnerActor extends AbstractActor {
         return receiveBuilder().match(
                 TestInformation.class, test -> {
                     String result = RunTest(test.getJscript(), test.getFunctionName(), test.getArgs());
-                    sender().tell(new TestInformation(test,  result), self());
+                    sender().tell(test.setResult(result), self());
                 }
         ).build();
     }
