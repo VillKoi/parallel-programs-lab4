@@ -34,11 +34,13 @@ public class TestInformation {
         this.result = result;
     }
 
-    public TestInformation(String packageID,String jscript, String functionName, String result) {
-        this.packageID = testInputData.getPackageID();
-        this.jscript = testInputData.getJscript();
-        this.functionName = testInputData.getFunctionName();
-        this.result = result;
+    public TestInformation(String packageID,String jscript,String functionName, TestInformation result) {
+        this.packageID = packageID;
+        this.jscript = jscript;
+        this.functionName = functionName;
+        this.testName = result.testName;
+        this.expectedResult = result.expectedResult;
+        this.args = result.args;
     }
 
     public ArrayList<Object> GetTests() {
