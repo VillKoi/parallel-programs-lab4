@@ -25,12 +25,13 @@ public class AkkaApp {
     private final static String HOST = "localhost";
     private final static int PORT = 8080;
     private final static int NR = 3;
+    private final static int TIMEOUT = 5000;
 
     private static Route createRouter(ActorRef storeActor,  ActorRef testActor ) {
         return route(
                 get(() -> concat(
                         path("get_result", () -> parameter("packageID", key -> {
-                            Future<Object> res = Patterns.ask(storeActor, "message", 0);
+                            Future<Object> res = Patterns.ask(storeActor, "message", TIMEOUT);
                             return completeOKWithFuture(res, Jackson.marshaller());
                         }))
                 )),
