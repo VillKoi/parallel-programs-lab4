@@ -16,7 +16,7 @@ public class TestInformation {
     public TestInformation(
             @JsonProperty("testName") String packageID,
             @JsonProperty("expectedResult") String jscript,
-            @JsonProperty("params") String functionName
+            @JsonProperty("params") ArrayList<int> arhs
     ) {
         this.packageID = packageID;
         this.jscript = jscript;
