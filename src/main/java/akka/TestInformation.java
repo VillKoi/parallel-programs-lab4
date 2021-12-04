@@ -37,6 +37,7 @@ public class TestInformation {
 
     };
 
+    @JsonProperty("status")
     private String validateResult() {
         return expectedResult.equals(result) ? "OK" : "FALSE";
     }
