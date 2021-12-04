@@ -7,8 +7,8 @@ public class StoreActor extends AbstractActor {
     public Receive createReceive(){
         return receiveBuilder(
         ).match(
-                TestInformation.class, tI -> {
-
+                TestInformation.class, testInformation -> {
+                    SetTestResult(testInformation);
                 }
         ).match(
                 String.class, packageID -> {
@@ -18,10 +18,6 @@ public class StoreActor extends AbstractActor {
     }
 
     private void SetTestResult(TestInformation testResult) {
-      // сохраняем в локальное хранилище
-    };
 
-    public String GetTestResults(String packageID) {
-        return "";
-    }
+    };
 }
