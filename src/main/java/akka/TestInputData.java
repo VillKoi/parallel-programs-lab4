@@ -16,11 +16,8 @@ public class TestInputData {
             @JsonProperty("packageId") String packageID,
             @JsonProperty("jsScript") String jscript,
             @JsonProperty("functionName") String functionName,
-            @JsonProperty("tests") Object params
+            @JsonProperty("tests") ArrayList<TestInformation> tests
     ) {
-        
-
-
       this.packageID = packageID;
       this.jscript = jscript;
       this.functionName = functionName;
