@@ -12,7 +12,7 @@ public class StoreActor extends AbstractActor {
     public Receive createReceive(){
         return receiveBuilder(
         ).match(
-                TestInformation.class, this::SetTestResult
+                TestInformation.class, this::setTestResult
         ).match(
                 String.class, packageID -> {
                     sender().tell(getResult(packageID), self());
@@ -29,6 +29,7 @@ public class StoreActor extends AbstractActor {
     };
 
     private Map<String, TestInformation> getResult(String packageID) {
-
+        System.out.println(storage.get(packageID));
+        return storage.get(packageID);
     }
 }
