@@ -2,6 +2,7 @@ package akka;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.annotation.JsonAppend;
 
 import java.util.ArrayList;
 
@@ -17,6 +18,18 @@ public class TestInformation {
     private String result;
 
     @JsonCreator
+    public TestInformation(
+            @JsonProperty("testName") String testName,
+            @JsonProperty("expectedResult") String expectedResult,
+            @JsonProperty("params") ArrayList<Integer> args
+    ) {
+        this.testName = testName;
+        this.expectedResult = expectedResult;
+        this.args = args;
+    }
+
+
+    @JsonAppend
     public TestInformation(
             @JsonProperty("testName") String testName,
             @JsonProperty("expectedResult") String expectedResult,
