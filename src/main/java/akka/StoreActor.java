@@ -2,7 +2,12 @@ package akka;
 
 import akka.actor.AbstractActor;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class StoreActor extends AbstractActor {
+    private Map<String, TestInformation> storage = new HashMap<>();
+
     @Override
     public Receive createReceive(){
         return receiveBuilder(
