@@ -9,6 +9,8 @@ import javax.script.ScriptException;
 import java.util.ArrayList;
 
 public class TestRunnerActor extends AbstractActor {
+    private final static String ENGINE_NAME = "nashorn";
+
     @Override
     public Receive createReceive(){
         return receiveBuilder().match(
@@ -19,9 +21,8 @@ public class TestRunnerActor extends AbstractActor {
         ).build();
     }
 
-
     public String RunTest(String jscript, String functionName, ArrayList<Integer> params) throws ScriptException, NoSuchMethodException {
-        ScriptEngine engine = new ScriptEngineManager().getEngineByName("nashorn");
+        ScriptEngine engine = new ScriptEngineManager().getEngineByName(ENGINE_NAME);
         engine.eval(jscript);
         Invocable invocable = (Invocable) engine;
         return invocable.invokeFunction(functionName, params).toString();
