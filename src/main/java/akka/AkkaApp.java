@@ -24,6 +24,7 @@ import static akka.http.javadsl.server.PathMatchers.segment;
 public class AkkaApp {
     private final static String HOST = "localhost";
     private final static int PORT = 8080;
+    private final static int NR = 3;
 
     private static Route createRouter(ActorRef storeActor,  ActorRef testActor ) {
         return route(
@@ -50,7 +51,7 @@ public class AkkaApp {
         ActorSystem system = ActorSystem.create("test");
         ActorRef storeActor = system.actorOf(Props.create(StoreActor.class));
 
-        ActorRef testActor = system.actorOf(new RoundRobinPool(3).props(Props.create(TestRunnerActor.class)));
+        ActorRef testActor = system.actorOf(new RoundRobinPool(NR).props(Props.create(TestRunnerActor.class)));
 
         ActorMaterializer actorMater =  ActorMaterializer.create(system);
 
