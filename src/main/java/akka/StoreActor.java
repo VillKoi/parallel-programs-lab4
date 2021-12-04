@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class StoreActor extends AbstractActor {
-    private Map<String, TestInformation> storage = new HashMap<>();
+    private Map<String, Map<String, TestInformation>> storage = new HashMap<>();
 
     @Override
     public Receive createReceive(){
@@ -23,7 +23,7 @@ public class StoreActor extends AbstractActor {
     }
 
     private void SetTestResult(TestInformation testResult) {
-        if (storage.containsKey(testResult.getPackageID())) {
+        if (!storage.containsKey(testResult.getPackageID())) {
 
         }
 
