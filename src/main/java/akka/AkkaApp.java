@@ -61,5 +61,7 @@ public class AkkaApp {
         Flow<HttpRequest, HttpResponse, ?> handler = router.flow(system, actorMater);
         ConnectHttp connect = ConnectHttp.toHost(HOST, PORT);
         CompletionStage<ServerBinding> srv =  http.bindAndHandle(handler, connect, actorMater);
+
+        srv.thenCompose(ServerBinding::unbind).thenAccept()
     }
 }
