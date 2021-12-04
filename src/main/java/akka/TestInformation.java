@@ -28,10 +28,10 @@ public class TestInformation {
     public TestInformation(TestInputData testInputData,
                            String result,
     ) {
-        this.packageID = packageID;
-        this.jscript = jscript;
-        this.functionName = functionName;
-        this.params = params;
+        this.packageID = testInputData.getPackageID();
+        this.jscript = testInputData.getJscript();
+        this.functionName = testInputData.getFunctionName();
+        this.params = testInputData.getParams();
         this.result = result;
     }
 
