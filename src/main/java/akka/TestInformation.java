@@ -34,6 +34,13 @@ public class TestInformation {
         this.result = result;
     }
 
+    public TestInformation(String packageID,String jscript, String functionName, String result) {
+        this.packageID = testInputData.getPackageID();
+        this.jscript = testInputData.getJscript();
+        this.functionName = testInputData.getFunctionName();
+        this.result = result;
+    }
+
     public ArrayList<Object> GetTests() {
         return new ArrayList<>();
     }

@@ -25,7 +25,13 @@ public class TestInputData {
     }
 
     public ArrayList<TestInformation> GetTest() {
-        
+        ArrayList<TestInformation> array = new ArrayList<>();
+
+        for (TestInformation test: tests) {
+            array.add(TestInformation(packageID, jscript, functionName, test))
+        }
+
+        return array
     };
 
     public ArrayList<Object> GetTests() {
