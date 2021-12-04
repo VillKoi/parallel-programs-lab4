@@ -27,16 +27,21 @@ public class AkkaApp {
     private final static int NR = 3;
     private final static int TIMEOUT = 5000;
 
+    private final static String RESULT_QUERY = "packageID";
+
+    private final static String RESULT_PATH_ = "get_result";
+    private final static String TEST_RUN_PATH = "run";
+
     private static Route createRouter(ActorRef storeActor,  ActorRef testActor ) {
         return route(
                 get(() -> concat(
-                        path("get_result", () -> parameter("packageID", key -> {
+                        path(RESULT_PATH_, () -> parameter(RESULT_QUERY, key -> {
                             Future<Object> res = Patterns.ask(storeActor, key, TIMEOUT);
                             return completeOKWithFuture(res, Jackson.marshaller());
                         }))
                 )),
                 post(() -> concat(
-                        path("run", ()->
+                        path(TEST_RUN_PATH, ()->
                                 entity(
                                         Jackson.unmarshaller(TestInputData.class), body ->  {
                                             ArrayList<TestInformation> tests = body.GetTests();
@@ -51,7 +56,6 @@ public class AkkaApp {
     public static void main(String[] args) throws Exception {
         ActorSystem system = ActorSystem.create("test");
         ActorRef storeActor = system.actorOf(Props.create(StoreActor.class));
-
         ActorRef testActor = system.actorOf(new RoundRobinPool(NR).props(Props.create(TestRunnerActor.class)));
 
         ActorMaterializer actorMater =  ActorMaterializer.create(system);
