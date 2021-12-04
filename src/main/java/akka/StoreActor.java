@@ -27,6 +27,6 @@ public class StoreActor extends AbstractActor {
 
         }
 
-        storage.put(testResult.getPackageID(), testResult);
+        storage.get(testResult.getPackageID()).put(testResult.getFunctionName(), testResult);
     };
 }
