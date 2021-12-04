@@ -20,7 +20,7 @@ public class StoreActor extends AbstractActor {
         ).build();
     }
 
-    private TestInformation setTestResult(TestInformation testResult) {
+    private void setTestResult(TestInformation testResult) {
         if (!storage.containsKey(testResult.getPackageID())) {
             storage.put(testResult.getPackageID(), new HashMap<>());
         }
