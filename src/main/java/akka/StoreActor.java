@@ -31,9 +31,8 @@ public class StoreActor extends AbstractActor {
     private Map<String, TestInformation> getResult(String packageID) {
         Map<String, TestInformation>  res = storage.get(packageID);
         for (TestInformation r: res) {
-            System.out.println(res.values());
-            return
+            System.out.println(r);
         }
- storage.get(packageID);
+        return storage.get(packageID);
     }
 }
