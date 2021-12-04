@@ -29,15 +29,14 @@ public class TestInformation {
 
     public String toString() {
         return  "testName" + this.testName +
+                this.validateResult() +
                 "expectedResult" + this.expectedResult +
-                "result" + this.result +
-                this.validateResult();
+                "result" + this.result;
 
     };
 
-
     private String validateResult() {
-        return  if (expectedResult.equals(result)) "OK" : "FALSE";
+        return expectedResult.equals(result) ? "OK" : "FALSE";
     }
 
     public TestInformation(TestInputData testInputData, String result) {
