@@ -2,8 +2,6 @@ package akka;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.databind.annotation.JsonNaming;
-import com.fasterxml.jackson.databind.annotation.*;
 
 import java.util.ArrayList;
 
@@ -15,7 +13,6 @@ public class TestInformation {
     private String testName;
     private String expectedResult;
     private ArrayList<Integer> args;
-    @JsonProperty("result")
     private String result;
 
     @JsonCreator
@@ -37,7 +34,6 @@ public class TestInformation {
 
     };
 
-    @JsonProperty("status")
     private String validateResult() {
         return expectedResult.equals(result) ? "OK" : "FALSE";
     }
