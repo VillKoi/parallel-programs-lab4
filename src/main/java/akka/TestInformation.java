@@ -25,8 +25,7 @@ public class TestInformation {
         this.params = params;
     }
 
-    public TestInformation(TestInputData testInputData, String result
-    ) {
+    public TestInformation(TestInputData testInputData, String result) {
         this.packageID = testInputData.getPackageID();
         this.jscript = testInputData.getJscript();
         this.functionName = testInputData.getFunctionName();
