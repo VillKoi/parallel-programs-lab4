@@ -1,0 +1,6 @@
+akka/RouteActor.class
+akka/StoreActor.class
+akka/TestRunnerActor.class
+akka/TestInformation.class
+akka/TestInputData.class
+akka/AkkaApp.class
