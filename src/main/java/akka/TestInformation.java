@@ -15,7 +15,7 @@ public class TestInformation {
     private String testName;
     private String expectedResult;
     private ArrayList<Integer> args;
-
+    @JsonProperty("result")
     private String result;
 
     @JsonCreator
