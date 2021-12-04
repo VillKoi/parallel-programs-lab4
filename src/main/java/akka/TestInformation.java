@@ -27,6 +27,19 @@ public class TestInformation {
         this.args = args;
     }
 
+    public String toString() {
+        return  "testName" + this.testName +
+                "expectedResult" + this.expectedResult +
+                "result" + this.result +
+                this.validateResult();
+
+    };
+
+
+    private String validateResult() {
+        return  if (expectedResult.equals(result)) "OK" : "FALSE";
+    }
+
     public TestInformation(TestInputData testInputData, String result) {
         this.packageID = testInputData.getPackageID();
         this.jscript = testInputData.getJscript();
