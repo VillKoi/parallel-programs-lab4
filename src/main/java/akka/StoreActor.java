@@ -15,7 +15,7 @@ public class StoreActor extends AbstractActor {
                 TestInformation.class, this::setTestResult
         ).match(
                 String.class, packageID -> {
-                    sender().tell(getResult(packageID).toString(), self());
+                    sender().tell(getResult(packageID), self());
                 }
         ).build();
     }
@@ -28,11 +28,13 @@ public class StoreActor extends AbstractActor {
         storage.get(testResult.getPackageID()).put(testResult.getTestName(), testResult);
     };
 
-    private Map<String, TestInformation> getResult(String packageID) {
+    private Map<String, String> getResult(String packageID) {
         Map<String, TestInformation>  testResults = storage.get(packageID);
+        Map<String, String>  result = new HashMap<>();
         for (TestInformation r: testResults.values()) {
             System.out.println(r.toString());
+            result.put(r.getTestName(), r.toString());
         }
-        return testResults;
+        return result;
     }
 }
