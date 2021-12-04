@@ -24,7 +24,7 @@ public class TestInputData {
       this.tests = tests;
     }
 
-    public ArrayList<TestInformation> GetTest() {
+    public ArrayList<TestInformation> GetTests() {
         ArrayList<TestInformation> array = new ArrayList<>();
 
         for (TestInformation test: tests) {
@@ -33,10 +33,6 @@ public class TestInputData {
 
         return array;
     };
-
-    public ArrayList<Object> GetTests() {
-        return new ArrayList<>();
-    }
 
     public String getPackageID() {
         return this.packageID;

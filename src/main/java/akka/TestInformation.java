@@ -44,7 +44,8 @@ public class TestInformation {
 
     public TestInformation setResult(String result) {
         this.result = result;
-    }
+        return this;
+    };
 
     public ArrayList<Object> GetTests() {
         return new ArrayList<>();
