@@ -15,7 +15,7 @@ public class StoreActor extends AbstractActor {
                 TestInformation.class, this::setTestResult
         ).match(
                 String.class, packageID -> {
-                    sender().tell(getResult(packageID), self());
+                    sender().tell(getResult(packageID).toString(), self());
                 }
         ).build();
     }
