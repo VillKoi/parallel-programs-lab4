@@ -24,7 +24,7 @@ public class StoreActor extends AbstractActor {
 
     private void SetTestResult(TestInformation testResult) {
         if (!storage.containsKey(testResult.getPackageID())) {
-
+            storage.put(testResult.getPackageID(), new HashMap<>());
         }
 
         storage.get(testResult.getPackageID()).put(testResult.getFunctionName(), testResult);
