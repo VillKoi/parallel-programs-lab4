@@ -62,6 +62,7 @@ public class AkkaApp {
         ConnectHttp connect = ConnectHttp.toHost(HOST, PORT);
         CompletionStage<ServerBinding> srv =  http.bindAndHandle(handler, connect, actorMater);
 
+        System.out.println("start");
         srv.thenCompose(ServerBinding::unbind).thenAccept(unbound -> system.terminate());
     }
 }
