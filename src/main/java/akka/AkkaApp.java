@@ -31,7 +31,7 @@ public class AkkaApp {
         return route(
                 get(() -> concat(
                         path("get_result", () -> parameter("packageID", key -> {
-                            Future<Object> res = Patterns.ask(storeActor, "message", TIMEOUT);
+                            Future<Object> res = Patterns.ask(storeActor, key, TIMEOUT);
                             return completeOKWithFuture(res, Jackson.marshaller());
                         }))
                 )),
