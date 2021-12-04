@@ -12,9 +12,7 @@ public class StoreActor extends AbstractActor {
     public Receive createReceive(){
         return receiveBuilder(
         ).match(
-                TestInformation.class, testInformation -> {
-                    SetTestResult(testInformation);
-                }
+                TestInformation.class, this::SetTestResult
         ).match(
                 String.class, packageID -> {
                     sender().tell(packageID, self());
