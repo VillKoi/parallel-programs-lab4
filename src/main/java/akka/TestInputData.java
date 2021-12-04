@@ -9,7 +9,7 @@ public class TestInputData {
     private String packageID;
     private String jscript;
     private String functionName;
-    private Object params;
+    private ArrayList<TestInformation> tests;
 
     @JsonCreator
     public TestInputData(
@@ -21,7 +21,7 @@ public class TestInputData {
       this.packageID = packageID;
       this.jscript = jscript;
       this.functionName = functionName;
-      this.params = params;
+      this.tests = tests;
     }
 
     public ArrayList<Object> GetTests() {
@@ -40,7 +40,7 @@ public class TestInputData {
         return functionName;
     }
 
-    public Object getParams() {
-        return params;
+    public ArrayList<TestInformation> getTests() {
+        return tests;
     }
 }
