@@ -26,7 +26,7 @@ public class StoreActor extends AbstractActor {
         if (storage.containsKey(testResult.getPackageID())) {
 
         }
-        
+
         storage.put(testResult.getPackageID(), testResult);
     };
 }
