@@ -28,10 +28,10 @@ public class TestInformation {
     }
 
     public String toString() {
-        return  "testName" + this.testName +
-                this.validateResult() +
-                "expectedResult" + this.expectedResult +
-                "result" + this.result;
+        return  "testName: " + this.testName +
+                ", " + this.validateResult() +
+                ", expectedResult: " + this.expectedResult +
+                ", result: " + this.result;
 
     };
 
