@@ -7,7 +7,6 @@ import com.fasterxml.jackson.databind.annotation.*;
 
 import java.util.ArrayList;
 
-@JsonNaming(PropertyNamingStrategies.SnakeCaseStrategy.class)
 public class TestInformation {
     private String packageID;
     private String jscript;
