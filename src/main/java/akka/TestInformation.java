@@ -9,8 +9,6 @@ public class TestInformation {
     private String packageID;
     private String jscript;
     private String functionName;
-    private Object params;
-    private String result;
 
     private String testName;
     private String expectedResult;
@@ -31,7 +29,6 @@ public class TestInformation {
         this.packageID = testInputData.getPackageID();
         this.jscript = testInputData.getJscript();
         this.functionName = testInputData.getFunctionName();
-        this.result = result;
     }
 
     public TestInformation(String packageID,String jscript,String functionName, TestInformation result) {
@@ -71,11 +68,7 @@ public class TestInformation {
         this.packageID = packageID;
     }
 
-    public void setParams(Object params) {
-        this.params = params;
-    }
-
-    public void setResult(String result) {
-        this.result = result;
+    public ArrayList<Integer> getArgs() {
+        return args;
     }
 }
