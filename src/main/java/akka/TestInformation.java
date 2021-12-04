@@ -12,10 +12,14 @@ public class TestInformation {
     private Object params;
     private String result;
 
+    private String testName;
+    private String expectedResult;
+    private ArrayList<Integer> args;
+
     @JsonCreator
     public TestInformation(
-            @JsonProperty("testName") String packageID,
-            @JsonProperty("expectedResult") String jscript,
+            @JsonProperty("testName") String testName,
+            @JsonProperty("expectedResult") String expectedResult,
             @JsonProperty("params") ArrayList<Integer> args
     ) {
         this.packageID = packageID;
