@@ -15,16 +15,20 @@ public class StoreActor extends AbstractActor {
                 TestInformation.class, this::SetTestResult
         ).match(
                 String.class, packageID -> {
-                    sender().tell(storage.get(packageID), self());
+                    sender().tell(getResult(packageID), self());
                 }
         ).build();
     }
 
-    private void SetTestResult(TestInformation testResult) {
+    private void setTestResult(TestInformation testResult) {
         if (!storage.containsKey(testResult.getPackageID())) {
             storage.put(testResult.getPackageID(), new HashMap<>());
         }
 
         storage.get(testResult.getPackageID()).put(testResult.getFunctionName(), testResult);
     };
+
+    private Map<String, TestInformation> getResult(String packageID) {
+
+    }
 }
