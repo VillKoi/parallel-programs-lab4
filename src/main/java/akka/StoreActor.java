@@ -28,13 +28,13 @@ public class StoreActor extends AbstractActor {
         storage.get(testResult.getPackageID()).put(testResult.getTestName(), testResult);
     };
 
-    private Map<String, String> getResult(String packageID) {
+    private Map<String, TestInformation> getResult(String packageID) {
         Map<String, TestInformation>  testResults = storage.get(packageID);
-        Map<String, String>  result = new HashMap<>();
+//        Map<String, String>  result = new HashMap<>();
         for (TestInformation r: testResults.values()) {
             System.out.println(r.toString());
-            result.put(r.getTestName(), r.toString());
+//            result.put(r.getTestName(), r.toString());
         }
-        return result;
+        return testResults;
     }
 }
