@@ -63,6 +63,7 @@ public class AkkaApp {
         CompletionStage<ServerBinding> srv =  http.bindAndHandle(handler, connect, actorMater);
 
         System.out.println("start");
+        System.in.read();
         srv.thenCompose(ServerBinding::unbind).thenAccept(unbound -> system.terminate());
     }
 }
