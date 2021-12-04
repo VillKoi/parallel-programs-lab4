@@ -22,17 +22,15 @@ public class TestInformation {
             @JsonProperty("expectedResult") String expectedResult,
             @JsonProperty("params") ArrayList<Integer> args
     ) {
-        this.packageID = packageID;
-        this.jscript = jscript;
-        this.functionName = functionName;
-        this.params = params;
+        this.testName = testName;
+        this.expectedResult = expectedResult;
+        this.args = args;
     }
 
     public TestInformation(TestInputData testInputData, String result) {
         this.packageID = testInputData.getPackageID();
         this.jscript = testInputData.getJscript();
         this.functionName = testInputData.getFunctionName();
-        this.params = testInputData.getParams();
         this.result = result;
     }
 
@@ -50,14 +48,6 @@ public class TestInformation {
 
     public String getFunctionName() {
         return functionName;
-    }
-
-    public Object getParams() {
-        return params;
-    }
-
-    public String getResult() {
-        return result;
     }
 
     public void setFunctionName(String functionName) {
