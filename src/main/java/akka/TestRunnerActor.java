@@ -13,7 +13,7 @@ public class TestRunnerActor extends AbstractActor {
         return receiveBuilder().match(
                 TestInputData.class, test -> {
                     String result = RunTest(test.getJscript(), test.getFunctionName(), test.getParams());
-                    sender().tell(result, self());
+                    sender().tell(new TestInformation(,  result, self());
                 }
         ).build();
     }

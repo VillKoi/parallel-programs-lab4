@@ -10,6 +10,7 @@ public class TestInformation {
     private String jscript;
     private String functionName;
     private Object params;
+    private String result;
 
     @JsonCreator
     public TestInformation(
@@ -22,6 +23,16 @@ public class TestInformation {
         this.jscript = jscript;
         this.functionName = functionName;
         this.params = params;
+    }
+
+    public TestInformation(TestInputData testInputData,
+                           String result,
+    ) {
+        this.packageID = packageID;
+        this.jscript = jscript;
+        this.functionName = functionName;
+        this.params = params;
+        this.result = result;
     }
 
     public ArrayList<Object> GetTests() {
@@ -42,5 +53,29 @@ public class TestInformation {
 
     public Object getParams() {
         return params;
+    }
+
+    public String getResult() {
+        return result;
+    }
+
+    public void setFunctionName(String functionName) {
+        this.functionName = functionName;
+    }
+
+    public void setJscript(String jscript) {
+        this.jscript = jscript;
+    }
+
+    public void setPackageID(String packageID) {
+        this.packageID = packageID;
+    }
+
+    public void setParams(Object params) {
+        this.params = params;
+    }
+
+    public void setResult(String result) {
+        this.result = result;
     }
 }
