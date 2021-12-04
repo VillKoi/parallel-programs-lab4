@@ -37,8 +37,8 @@ public class AkkaApp {
                         path("run", ()->
                                 entity(
                                         Jackson.unmarshaller(TestInputData.class), body ->  {
-                                            ArrayList<Object> tests =  body.GetTests();
-                                            for (Object t: tests) {
+                                            ArrayList<TestInformation> tests = body.GetTests();
+                                            for (TestInformation t: tests) {
                                                 testActor.tell(t, storeActor);
                                             }
                                             return complete(StatusCodes.OK);

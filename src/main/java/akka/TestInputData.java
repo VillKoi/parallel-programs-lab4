@@ -24,6 +24,10 @@ public class TestInputData {
       this.tests = tests;
     }
 
+    public ArrayList<TestInformation> GetTest() {
+        
+    };
+
     public ArrayList<Object> GetTests() {
         return new ArrayList<>();
     }
