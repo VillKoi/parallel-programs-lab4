@@ -90,4 +90,8 @@ public class TestInformation {
     public ArrayList<Integer> getArgs() {
         return args;
     }
+
+    public String getTestName() {
+        return testName;
+    }
 }

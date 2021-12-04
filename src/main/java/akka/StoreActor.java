@@ -25,7 +25,7 @@ public class StoreActor extends AbstractActor {
             storage.put(testResult.getPackageID(), new HashMap<>());
         }
 
-        storage.get(testResult.getPackageID()).put(testResult.getFunctionName(), testResult);
+        storage.get(testResult.getPackageID()).put(testResult.getTestName(), testResult);
     };
 
     private Map<String, TestInformation> getResult(String packageID) {
