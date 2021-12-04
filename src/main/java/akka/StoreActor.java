@@ -33,7 +33,7 @@ public class StoreActor extends AbstractActor {
         Map<String, String>  result = new HashMap<>();
         for (TestInformation r: testResults.values()) {
             System.out.println(r.toString());
-            result.put(packageID, r.toString());
+            result.put(r.getTestName(), r.toString());
         }
         return result;
     }
